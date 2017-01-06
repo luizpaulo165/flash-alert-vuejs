@@ -6,38 +6,39 @@
 </head>
 <body>
   <div id="app">
+    <button type="button" name="button" @click="flashAlert('warning', 'Testanto aqui para ver se funciona', 2000)">teste</button>
     <template>
-      <div id="wrap-flash-alerts">
-        <div class="flash-alert-vuejs flash-ok">
-          <div class="flash">{{ ok }}</div>
-        </div>
-        <div class="flash-alert-vuejs flash-message">
-          <div class="flash">{{ message }}</div>
-        </div>
-        <div class="flash-alert-vuejs flash-error">
-          <div class="flash">{{ error }}</div>
-        </div>
-        <div class="flash-alert-vuejs flash-warning">
-          <div class="flash">{{ warning }}</div>
-        </div>
-      </div>
+      <div id="wrap-flash-alerts"></div>
     </template>
   </div>
 
   <style>
+  body{
+    background: gray;
+    height:100vh;
+    position:relative;
+    z-index: 1
+  }
     #wrap-flash-alerts{
       width:auto;
       max-width: 86%;
       position:absolute;
       top:50%;
       right:20px;
+      z-index:-1;
       transform:translateY(-50%);
       -webkit-transform:translateY(-50%);
+    }
+    #wrap-flash-alerts.active{
+      z-index:10000;
     }
     .flash-alert-vuejs{
       margin-bottom:10px;
       position:relative;
       overflow:hidden;
+      opacity:0;
+      transition: 0.5s all;
+      -webkit-transition: 0.5s all;
     }
     .flash-alert-vuejs .flash{
       font-size:16px;
@@ -49,7 +50,7 @@
       padding:15px 25px;
       float:right;
     }
-    .flash-alert-vuejs.flash-ok .flash{
+    .flash-alert-vuejs.flash-success .flash{
       background:#008E09;
     }
     .flash-alert-vuejs.flash-message .flash{
@@ -61,20 +62,105 @@
     .flash-alert-vuejs.flash-warning .flash{
       background:#FF8821;
     }
+
+    .fade-in {
+      opacity:1;
+      transition: 0.5s all;
+      -webkit-transition: 0.5s all;
+    }
+    .fade-out {
+      opacity:0;
+      transition: 0.5s all;
+      -webkit-transition: 0.5s all;
+    }
   </style>
 
   <script>
+    var contDiv = 0
+    var contTime = 100
+    var pushDiv = []
+
     new Vue({
       el: '#app',
       data: {
-        message: 'Uma mensagem qualquer!',
-        ok: 'Tudo certo amigo!',
-        error: 'Algo deu Errado!',
-        warning: 'Perigo, se ligue ai pai! Perigo, se ligue ai pai! Perigo, se ligue ai pai!',
+        // message: 'Uma mensagem qualquer!',
+        // success: 'Tudo certo amigo!',
+        // error: 'Algo deu Errado!',
+        // warning: 'Perigo, se ligue ai pai! Perigo, se ligue ai pai! Perigo, se ligue ai pai!',
       },
-      computed: {
-        alertShow: function (url) {
-          return
+      methods: {
+        flashAlert: function (type, messageFlash, timer) {
+          var typeFlash
+          contDiv += 1
+
+          // types: success, error, warning, message
+          switch (type) {
+            case 'success' :
+              typeFlash = 'flash-success'
+            break;
+            case 'error' :
+              typeFlash = 'flash-error'
+            break;
+            case 'warning' :
+              typeFlash = 'flash-warning'
+            break;
+            default:
+              typeFlash = 'flash-message'
+          }
+
+          var divCont = '\
+          <div id="flash-'+ contDiv +'" class="flash-alert-vuejs '+ typeFlash +'">\
+            <div class="flash">'+ messageFlash +'</div>\
+          </div>\
+          '
+
+          // inset divCont in div father
+          document.getElementById('wrap-flash-alerts').innerHTML += divCont
+
+          // include name class in new array
+          pushDiv.push('flash-'+ contDiv +'')
+
+          if (pushDiv.length > 0) {
+            document.getElementById('wrap-flash-alerts').classList.add('active')
+          }
+
+          // set id in variable flashDiv
+          var flashDiv = document.getElementById('flash-'+ contDiv +'')
+
+          // set Class fade-in
+          setTimeout(function(){
+            flashDiv.classList.add('fade-in')
+          }, 100)
+
+          // function remove class fade-in
+          function closeFlash(element){
+            var timeClose = setTimeout(function(){
+              element.classList.remove('fade-in')
+
+
+              pushDiv.splice(element, 1)
+
+              setTimeout(function(){
+                element.remove(element)
+
+                if (pushDiv.length == 0) {
+                  document.getElementById('wrap-flash-alerts').classList.remove('active')
+                }
+
+              }, contTime += 50)
+
+
+            }, timer += 200)
+
+          }
+
+          // loop closeFlash event
+          for (var i = 0; i < pushDiv.length; i++) {
+            var elementDiv = document.getElementById(pushDiv[i])
+
+            elementDiv.addEventListener('load', closeFlash(elementDiv), false)
+          }
+
         }
       }
     })
