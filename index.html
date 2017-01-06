@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome to Vue</title>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <template>
+      <div id="wrap-flash-alerts">
+        <div class="flash-alert-vuejs flash-ok">
+          <div class="flash">{{ ok }}</div>
+        </div>
+        <div class="flash-alert-vuejs flash-message">
+          <div class="flash">{{ message }}</div>
+        </div>
+        <div class="flash-alert-vuejs flash-error">
+          <div class="flash">{{ error }}</div>
+        </div>
+        <div class="flash-alert-vuejs flash-warning">
+          <div class="flash">{{ warning }}</div>
+        </div>
+      </div>
+    </template>
+  </div>
+
+  <style>
+    #wrap-flash-alerts{
+      width:auto;
+      max-width: 86%;
+      position:absolute;
+      top:50%;
+      right:20px;
+      transform:translateY(-50%);
+      -webkit-transform:translateY(-50%);
+    }
+    .flash-alert-vuejs{
+      margin-bottom:10px;
+      position:relative;
+      overflow:hidden;
+    }
+    .flash-alert-vuejs .flash{
+      font-size:16px;
+      color:#fff;
+      width:auto;
+      height:auto;
+      max-width:100%;
+      diplay:inline-block;
+      padding:15px 25px;
+      float:right;
+    }
+    .flash-alert-vuejs.flash-ok .flash{
+      background:#008E09;
+    }
+    .flash-alert-vuejs.flash-message .flash{
+      background:#3288FF;
+    }
+    .flash-alert-vuejs.flash-error .flash{
+      background:#E80000;
+    }
+    .flash-alert-vuejs.flash-warning .flash{
+      background:#FF8821;
+    }
+  </style>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        message: 'Uma mensagem qualquer!',
+        ok: 'Tudo certo amigo!',
+        error: 'Algo deu Errado!',
+        warning: 'Perigo, se ligue ai pai! Perigo, se ligue ai pai! Perigo, se ligue ai pai!',
+      },
+      computed: {
+        alertShow: function (url) {
+          return
+        }
+      }
+    })
+  </script>
+</body>
+</html>
