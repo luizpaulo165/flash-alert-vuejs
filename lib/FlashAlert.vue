@@ -1,5 +1,7 @@
 <template>
-  <div id="wrap-flash-alerts"></div>
+  <flashalert>
+    <div id="wrap-flash-alerts"></div>
+  </flashalert>
 </template>
 
 <style>
@@ -58,3 +60,8 @@
     -webkit-transition: 0.5s all;
   }
 </style>
+
+
+<script type="text/javascript">
+  import indexJs from './index.js'
+</script>
