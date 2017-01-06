@@ -1,6 +1,6 @@
 {
   "name": "flash-alert-vuejs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Flash Alerts for Vuejs",
   "main": "index.js",
   "scripts": {
