@@ -1,24 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Flash Alert Vuejs</title>
-  <script src="https://unpkg.com/vue/dist/vue.js"></script>
-</head>
-<body>
-  <div id="app">
-    <button type="button" name="button" @click="flashAlert('warning', 'Testanto aqui para ver se funciona', 2000)">teste</button>
-    <template>
-      <div id="wrap-flash-alerts"></div>
-    </template>
-  </div>
+  <template>
+    <div id="wrap-flash-alerts"></div>
+  </template>
 
   <style>
-  body{
-    background: gray;
-    height:100vh;
-    position:relative;
-    z-index: 1
-  }
     #wrap-flash-alerts{
       width:auto;
       max-width: 86%;
@@ -80,14 +64,7 @@
     var contTime = 100
     var pushDiv = []
 
-    new Vue({
-      el: '#app',
-      data: {
-        // message: 'Uma mensagem qualquer!',
-        // success: 'Tudo certo amigo!',
-        // error: 'Algo deu Errado!',
-        // warning: 'Perigo, se ligue ai pai! Perigo, se ligue ai pai! Perigo, se ligue ai pai!',
-      },
+    export default{
       methods: {
         flashAlert: function (type, messageFlash, timer) {
           var typeFlash
@@ -163,7 +140,7 @@
 
         }
       }
-    })
+    }
   </script>
 </body>
 </html>
