@@ -1,0 +1,24 @@
+{
+  "name": "flash-alert-vuejs",
+  "version": "1.0.0",
+  "description": "Flash Alerts for Vuejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luizpaulo165/flash-alert-vuejs.git"
+  },
+  "keywords": [
+    "flash",
+    "alert",
+    "vuejs"
+  ],
+  "author": "Luiz Paulo Valença",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/luizpaulo165/flash-alert-vuejs/issues"
+  },
+  "homepage": "https://github.com/luizpaulo165/flash-alert-vuejs#readme"
+}
