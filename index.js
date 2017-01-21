@@ -2,15 +2,7 @@ var contDiv = 0
 var contTime = 100
 var pushDiv = []
 
-module.flashAlert = {
-  components: { FlashAlert },
-  watch: {
-    setFlashAlert function(type, messageFlash, timer) {
-      this.flashAlert(type, messageFlash, timer)
-    }
-  },
-  methods: {
-    flashAlert : function (type, messageFlash, timer){
+flashAlert = function (type, messageFlash, timer){
       var typeFlash
       contDiv += 1
 
@@ -82,5 +74,5 @@ module.flashAlert = {
         elementDiv.addEventListener('load', closeFlash(elementDiv), false)
       }
     }
-  }
-};
+
+module.exports = flashAlert
