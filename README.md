@@ -1,3 +1,4 @@
 # Flash Alerts Vuejs
 
-> Flash alerts for Vuejs
+> Coming Soon
+![alt tag](http://gph.is/2cYcNn9)
